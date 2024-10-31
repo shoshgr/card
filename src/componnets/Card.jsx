@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaTrash, FaPaintBrush } from 'react-icons/fa';
+import axios from 'axios';
 import './css/card.css'; 
 import Colors from './Colors';
 
@@ -14,20 +15,15 @@ const Card = ({  card,cards, setCards }) => {
   };
 
   const handleUpdateClick = async () => {
-    console.log(newColor);
     try {
-      const response = await fetch(`${url}/${card.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ text: newText, backgroundColor: newColor }),
+      const response = await axios.put(`${url}/${card.id}`, {
+        text: newText,
+        backgroundColor: newColor,
       });
 
-      if (!response.ok) {
+      if (response.status !== 200) {
         throw new Error('Failed to update the card');
       }
-
     } catch (err) {
       console.log(err.message);
     }
@@ -35,11 +31,9 @@ const Card = ({  card,cards, setCards }) => {
 
   const handleDeleteClick = async (id) => {
     try {
-      const response = await fetch(`${url}/${id}`, {
-        method: 'DELETE',
-      });
+      const response = await axios.delete(`${url}/${id}`);
 
-      if (!response.ok) {
+      if (response.status !== 200) {
         throw new Error('Failed to delete the card');
       }
 
@@ -49,8 +43,6 @@ const Card = ({  card,cards, setCards }) => {
       console.log(err.message);
     }
   };
-
- 
 
   return (
     <div

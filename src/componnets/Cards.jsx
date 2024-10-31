@@ -3,13 +3,13 @@ import axios from 'axios';
 import Card from './Card';
 import { FaPlus } from 'react-icons/fa';
 import './css/cards.css';
-import ReactDOM from "react-dom";
+
 import {
   GridContextProvider,
   GridDropZone,
   GridItem,
   swap,
-  move
+  
 } from "react-grid-dnd";
 const Cards = () => {
   const [cards, setCards] = useState([]);
@@ -27,9 +27,22 @@ const Cards = () => {
 
     fetchCards();
   }, []);
+  
   function onChange(sourceId, sourceIndex, targetIndex, targetId) {
     const nextState = swap(cards, sourceIndex, targetIndex);
     setCards(nextState);
+
+    const updateCardsOrder = async () => {
+        try {
+            await  axios.put(`http://localhost:8080/cards/`, {
+             "cards":nextState
+            });
+        } catch (err) {
+            console.log(err.message);
+        }
+    };
+
+    updateCardsOrder();
   }
 
   const handleAddCard = async () => {
@@ -58,21 +71,15 @@ const Cards = () => {
             rowHeight={200} 
   
           >
-            {cards.map((card,index) => (
+            {cards.length > 0 ?(cards.map((card) => (
               <GridItem key={card.id} className="griditemUI">
                 <Card
                   key={card.id} card={card} setCards={setCards} cards={cards}  />
               </GridItem>
-            ))}
+            ))):<p className="no-cards-msg">No cards found.</p>}
           </GridDropZone>
         </GridContextProvider>
-        {/* {cards.length > 0 ? (
-        cards.map((card, index) => (
-          <Card key={index}  card={card}  />
-        ))
-      ) : (
-        <p className="no-cards-msg">No cards found.</p>
-      )} */}
+       
       </div>
     </div>
   );
