@@ -3,7 +3,7 @@ import { FaTrash, FaPaintBrush } from 'react-icons/fa';
 import './css/card.css'; 
 import Colors from './Colors';
 
-const Card = ({  card }) => {
+const Card = ({  card,cards, setCards }) => {
   const url = "http://localhost:8080/cards";
   const [newText, setNewText] = useState(card.text);
   const [newColor, setNewColor] = useState(card.backgroundColor);
@@ -43,6 +43,8 @@ const Card = ({  card }) => {
         throw new Error('Failed to delete the card');
       }
 
+      const updatedCards = cards.filter(card => card.id !== id);
+      setCards(updatedCards);
     } catch (err) {
       console.log(err.message);
     }

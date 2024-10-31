@@ -1,17 +1,21 @@
+import React from 'react';
 
-import './App.css';
-import Cards from './componnets/Cards'
-import Colors from './componnets/Colors';
-function App() {
-  const colors = ['white', 'pink', 'red', 'green'];
- 
+
+import Cards from './componnets/Cards'; // עדכן את הנתיב לפי הצורך
+
+
+
+const App = () => {
+  
+
 
   return (
-    <div className="App">
- <Cards/>
- 
-    </div>
+  
+      <div className="App">
+     
+        <Cards />
+      </div>
   );
-}
+};
 
 export default App;

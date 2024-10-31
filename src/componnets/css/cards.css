@@ -1,13 +1,12 @@
-
-.cards-container {
+ .cards-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    text-align: center;
+  
     color: #333;
-  }
+ }
 
-  .add-card-btn {
+.add-card-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -20,24 +19,32 @@
     cursor: pointer;
     margin: 10px auto;
     transition: transform 0.2s ease;
-  }
-  
-  .add-card-btn:hover {
+}
+
+.add-card-btn:hover {
     transform: scale(1.1);
     background-color: #218838;
-  }
-  
+}
 
-  .cards-grid {
+
+
+
+
+.cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-  }
-  
- 
-  .no-cards-msg {
-    font-size: 18px;
-    color: #777;
-  }
-  
+   
+}
+
+.card {
+    background-color: var(--card-background-color, #333);
+    padding: 20px;
+    border-radius: 8px;
+    width: 150px; 
+    height: 150px; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+}

@@ -5,12 +5,13 @@
     cursor: pointer;
     border-radius: 8px;
     position: relative;
-    width: 150px; 
-    height: 150px; 
+    width: 100px; 
+    height: 100px; 
     display: flex; 
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
 }
 
 .card p {
